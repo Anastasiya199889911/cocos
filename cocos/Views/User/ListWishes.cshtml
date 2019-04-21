@@ -1,0 +1,70 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<section class="body">
+    <div class="container-fluid p-0" style="height: 100%; width: 100%;">
+        <div class="row justify-content-center m-0" style=" width: 100%;">
+            <div class="col-12 title-page">
+                Список желаний
+            </div>
+
+            <div class="col-10">
+                @foreach (var list in ViewBag.list)
+                {
+                <hr>
+                <div class="row col-12 m-0 p-0">
+                    <div class="col-3" style="text-align-last: left;">
+                        @foreach(var p in list.products.photo)
+                        {
+                            if(p.is_main==true)
+                            {
+                                <img src="@Url.Content(p.photo)" class=w-100>
+                            }
+                        }
+                        
+                    </div>
+                    <div class="col-8" style="text-align-last: left;">
+                        <div class="row col-12 m-0 p-0">
+                            <label class="order-text">@list.products.name</label>
+                        </div>
+                        <div class="row col-12 m-0 p-0">
+                            <label class="order-text-price">Цена: @list.products.price руб</label>
+                        </div>
+                        <div class="row col-12 about-prod-save">
+                            <input type="hidden" value="@list.id_product" />
+                            <button class="list-sale sale_btn_list"><i class="fas fa-shopping-basket"></i> Купить</button>
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <input type="hidden" value="@list.id_product" />
+                        <i class="fas fa-trash-alt list_trash" style="font-size: 1.5rem"></i>
+                    </div>
+                </div>
+                }
+
+                @*<hr>
+                <div class="row col-12 m-0 p-0">
+                    <div class="col-3" style="text-align-last: left;">
+                        <img src="Фото4.png" class=w-100>
+                    </div>
+                    <div class="col-8" style="text-align-last: left;">
+                        <div class="row col-12 m-0 p-0">
+                            <label class="order-text">Apple EarPods 3.5mm original</label>
+                        </div>
+                        <div class="row col-12 m-0 p-0">
+                            <label class="order-text-price">Цена: 2000 руб</label>
+                        </div>
+                        <div class="row col-12 about-prod-save">
+                            <button class="list-sale sale_btn"><i class="fas fa-shopping-basket"></i> Купить</button>
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <i class="fas fa-trash-alt" style="font-size: 1.5rem"></i>
+                    </div>
+                </div>*@
+
+            </div>
+
+        </div>
+    </div>
+</section>

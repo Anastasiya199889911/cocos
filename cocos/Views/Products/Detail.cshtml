@@ -1,0 +1,382 @@
+﻿<section class="body">
+    <div class="container-fluid p-0" style="height: 100%; width: 100%;">
+        <div class="row justify-content-center m-0" style=" width: 100%;">
+
+            <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
+                <label class="about-product-label">@ViewBag.product.name </label>
+                <input type="hidden" name="id_product" id="id_product" value="@ViewBag.product.id" />
+
+
+                <!-- страница ОПИСАНИЕ -->
+                <div class="row col-12 ml-0 mr-0 p-0" id="desc1">
+                    <div class="row col-12 col-sm-12 col-md-12  about-product-title p-0 ml-0 mr-0">
+                        <div class="col-12 col-sm-12 col-md-auto col-lg-auto col-xl-auto p-0">
+                            <label class="about-product-point m-0 active-point descriprion">Описание</label>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-auto col-lg-auto col-xl-auto  p-0">
+                            <label class="about-product-point m-0 charact">Характеристики</label>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-auto col-lg-auto col-xl-auto  p-0">
+                            <label class="about-product-point m-0 photo">Фото</label>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-auto col-lg-auto col-xl-auto  p-0">
+                            <label class="about-product-point m-0 comment">Отзывы</label>
+                        </div>
+                    </div>
+
+
+                    <div class="row col-12 ml-0 mr-0 about-product-body">
+                        <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 p-0 ml-0 mr-0">
+                            <div class="row col-12 p-0 m-0">
+                                <div class="col-4 p-0">
+                                    @foreach (var photo in ViewBag.photo)
+                                    {
+                                        <div class="col-5 p-0 ml-auto m-3">
+                                            <img src="@Url.Content(photo.photo)" class="w-100 about-product-img active-img">
+                                        </div>
+                                    }
+                                    @*<div class="col-5 p-0 ml-auto m-3">
+                                            <img src="фото2.png" class="w-100 about-product-img">
+                                        </div>
+                                        <div class="col-5 p-0 ml-auto m-3">
+                                            <img src="фото3.png" class="w-100 about-product-img">
+                                        </div>*@
+                                </div>
+                                <div class="col-8" style="padding-right: 3rem;padding-left: 3rem; padding-top: 3rem;">
+                                    <img src="@Url.Content(ViewBag.main_photo.photo)" class="w-100">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 p-0 ml-0 mr-0" style="margin-top: 5rem;">
+                            <div class="row col-12 p-0 m-0">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                    <div class="row col-12 about-prod-price">
+                                        <label class="about-product-price">@ViewBag.product.price руб</label>
+                                    </div>
+                                    @if (ViewBag.product.count == 0)
+                                    {
+
+                                        <div class="row col-12 about-prod-save">
+                                            <button class="about-product-save sale_btn" disabled><i class="fas fa-shopping-basket"></i> Купить</button>
+                                        </div>
+                                        <span class="price d-block" style="color:#bbb">Нет в наличии</span>
+                                    }
+                                    else
+                                    {
+                                        <div class="row col-12 about-prod-save">
+                                            <button class="about-product-save sale_btn"><i class="fas fa-shopping-basket"></i> Купить</button>
+                                        </div>
+                                    }
+                                    @*<div class="row col-12">
+                                            <div class=" about-prod-like-list">
+                                                <label class="about-product-like-list"><i class="fas fa-heart"></i>  Добавить в список желаний</label>
+                                            </div>
+                                        </div>*@
+                                </div>
+
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                    <div class="row col-12 about-prod-desc">
+                                        <label class="about-product-desc">Дополнительно:</label>
+                                    </div>
+                                    <div class="row col-12">
+                                        <label class="about-product-desc" text-overflow>Гарантия: @ViewBag.product.guarant</label>
+                                        <label class="about-product-desc" text-overflow>Страна-производитель: @ViewBag.product.country</label>
+                                    </div>
+                                    @*<div class="row col-12">
+                                            <label class="about-product-desc">Страна-производитель: Вьетнам</label>
+                                        </div>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row col-12 ml-0 mr-0 about-product-footer justify-content-center">
+                        <label class="about-prod-text">
+                            @ViewBag.product.description
+                        </label>
+                        @foreach (var photo in ViewBag.photo)
+                        {
+                            <div class="row col-12 justify-content-center">
+                                <div class="col-12 col-cm-12 col-md-6 col-lg-4 col-xl-4 m-4">
+                                    <img src="@Url.Content(photo.photo)" class="w-100">
+                                </div>
+                            </div>
+                        }
+                        @*<div class="row col-12 justify-content-center">
+                                <div class="col-12 col-cm-12 col-md-6 col-lg-4 col-xl-4 m-4">
+                                    <img src="img-down1.png" class="w-100">
+                                </div>
+                            </div>
+
+                            <div class="row col-12 justify-content-center">
+                                <div class="col-12 col-cm-12 col-md-6 col-lg-4 col-xl-4 m-4">
+                                    <img src="img-down2.png" class="w-100">
+                                </div>
+                            </div>*@
+                    </div>
+                </div>
+
+                <!-- страницы -->
+                <div class="row col-12 ml-0 mr-0 p-0 d-none" id="page">
+                    <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 p-0">
+                        <!-- меню -->
+                        <div class="row col-12 col-sm-12 col-md-12  about-product-title p-0 ml-0 mr-0" id="desc_menu">
+                            <div class="col-12 col-sm-12 col-md-auto col-lg-auto col-xl-auto p-0">
+                                <label class="about-product-point m-0 descriprion">Описание</label>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-auto col-lg-auto col-xl-auto  p-0">
+                                <label class="about-product-point m-0 charact" id="charact">Характеристики</label>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-auto col-lg-auto col-xl-auto  p-0">
+                                <label class="about-product-point m-0 photo" id="photo">Фото</label>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-auto col-lg-auto col-xl-auto  p-0">
+                                <label class="about-product-point m-0 comment" id="comment">Отзывы</label>
+                            </div>
+                        </div>
+
+                        <!-- страница ХАРАКТЕРИСТИКИ -->
+                        <div class="row col-12 ml-0 mr-0 about-tech-title pl-5 pr-5" id="desc_char1">
+                            <label class="about-tech-title-text1">Технические характеристики </label>
+                            <label class="about-tech-title-text2">@ViewBag.product.name</label>
+                        </div>
+                        <div class="row col-12 ml-0 mr-0 about-tech-text pl-5 pr-5" id="desc_char2">
+                            @foreach (var ch in ViewBag.characteristic)
+                            {
+                                if (ch.text != "")
+                                {
+                                    <div class="row col-12 ml-0 mr-0 p-0">
+                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-0">
+                                            <label class="about-tech-text-text1">@ch.characteriactics.name</label>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-0">
+                                            <label class="about-tech-text-text2">@ch.text</label>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            @*<div class="row col-12 ml-0 mr-0 p-0">
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-0">
+                                        <label class="about-tech-text-text1">Тип подключения</label>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-0">
+                                        <label class="about-tech-text-text2">Проводное</label>
+                                    </div>
+                                </div>
+                                <div class="row col-12 ml-0 mr-0 p-0">
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-0">
+                                        <label class="about-tech-text-text1">Интерфейс проводного подключения</label>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-0">
+                                        <label class="about-tech-text-text2">mini-jack 3.5mm</label>
+                                    </div>
+                                </div>
+                                <div class="row col-12 ml-0 mr-0 p-0">
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-0">
+                                        <label class="about-tech-text-text1">Цвет</label>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-0">
+                                        <label class="about-tech-text-text2">Белый</label>
+                                    </div>
+                                </div>
+                                <div class="row col-12 ml-0 mr-0 p-0">
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-0">
+                                        <label class="about-tech-text-text1">Диапазон частот наушников</label>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-0">
+                                        <label class="about-tech-text-text2">20 - 30000 Гц</label>
+                                    </div>
+                                </div>
+                                <div class="row col-12 ml-0 mr-0 p-0">
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-0">
+                                        <label class="about-tech-text-text1">Сопротивление наушников</label>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-0">
+                                        <label class="about-tech-text-text2">35 ом</label>
+                                    </div>
+                                </div>
+                                <div class="row col-12 ml-0 mr-0 p-0">
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-0">
+                                        <label class="about-tech-text-text1">Чувствительность наушников</label>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-0">
+                                        <label class="about-tech-text-text2">110 дБ/мВт</label>
+                                    </div>
+                                </div>
+                                <div class="row col-12 ml-0 mr-0 p-0">
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-0">
+                                        <label class="about-tech-text-text1">Наличие гарнитуры</label>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-0">
+                                        <label class="about-tech-text-text2">Да</label>
+                                    </div>
+                                </div>*@
+
+                        </div>
+                        <div class="row col-12 ml-0 mr-0 about-tech-footer pl-5 pr-5" id="desc_char3">
+                            <label class="about-tech-footer-text">* Характеристики и комплектация товара могут изменяться производителем без уведомления</label>
+                        </div>
+                        <!-- конец ХАРАКТЕРИСТИКА -->
+                        <!-- страница ФОТО -->
+                        @foreach (var photo in ViewBag.photo)
+                        {
+                            <div class="row col-12 justify-content-center ml-0 mr-0 about-tech-title pl-5 pr-5 desc_photo">
+                                <div class="col-12 col-cm-12 col-md-8 col-lg-8 col-xl-8 m-4">
+                                    <img src="@Url.Content(photo.photo)" class="w-100">
+                                </div>
+                            </div>
+                        }
+                        @*<div class="row col-12 justify-content-center ml-0 mr-0 about-tech-title pl-5 pr-5 desc_photo">
+                                <div class="col-12 col-cm-12 col-md-8 col-lg-8 col-xl-8 m-4">
+                                    <img src="img-down1.png" class="w-100">
+                                </div>
+                            </div>
+
+                            <div class="row col-12 justify-content-center ml-0 mr-0 about-tech-title pl-5 pr-5 desc_photo">
+                                <div class="col-12 col-cm-12 col-md-8 col-lg-8 col-xl-8 m-4">
+                                    <img src="img-down2.png" class="w-100">
+                                </div>
+                            </div>*@
+                        <!-- конец ФОТО -->
+                        <!-- страница ОТЗЫВЫ -->
+                        @*<div class="row col-12 justify-content-start ml-0 mr-0 about-tech-title pl-5 pr-5" id="desc_comment_title">
+                                <button type="button" class="about-prod-comment-btn" data-toggle="modal" data-target="#exampleModal">
+                                    Добавить отзыв
+                                </button>
+                            </div>*@
+
+                        <div class="row col-12 justify-content-center ml-0 mr-0 about-tech-title pl-5 pr-5" id="desc_comment">
+                            @foreach (var comment in ViewBag.comment)
+                            {
+                                <div class="row col-12 about-tech-comment">
+                                    <div class="col-12 col-cm-12 col-md-12 col-lg-12 col-xl-12 m-0 p-0">
+                                        <label class="about-prod-comment-date">
+                                            @{ string date = "";
+                                                if (comment.date.Day < 10)
+                                                { date += "0" + comment.date.Day + "."; }
+                                                else
+                                                { date += comment.date.Day + "."; }
+                                                if (comment.date.Month < 10)
+                                                { date += "0" + comment.date.Month + "."; }
+                                                else
+                                                { date += comment.date.Month + "."; }
+                                                date += comment.date.Year;
+                                            }
+                                            @date
+                                        </label>
+                                    </div>
+                                    <div class="col-12 col-cm-12 col-md-12 col-lg-12 col-xl-12 m-0 p-0">
+                                        <label class="about-prod-comment-text1">
+                                            @comment.text
+                                        </label>
+                                    </div>
+                                    <div class="col-12 col-cm-12 col-md-12 col-lg-12 col-xl-12 m-0 p-0">
+                                        <i class="fas fa-plus plus"></i>
+                                        <label class="about-prod-comment-text2">
+                                            @comment.plus
+                                        </label>
+                                    </div>
+                                    <div class="col-12 col-cm-12 col-md-12 col-lg-12 col-xl-12 m-0 p-0">
+                                        <i class="fas fa-minus minus"></i>
+                                        <label class="about-prod-comment-text2">
+                                            @comment.minus
+                                        </label>
+                                    </div>
+                                </div>
+                            }
+
+                            @*<div class="row col-12 about-tech-comment">
+                                    <div class="col-12 col-cm-12 col-md-12 col-lg-12 col-xl-12 m-0 p-0">
+                                        <label class="about-prod-comment-date">
+                                            12.12.2018
+                                        </label>
+                                    </div>
+                                    <div class="col-12 col-cm-12 col-md-12 col-lg-12 col-xl-12 m-0 p-0">
+                                        <label class="about-prod-comment-text1">
+                                            Смартфон хорошо, не лагает, хорошая камера
+                                        </label>
+                                    </div>
+                                    <div class="col-12 col-cm-12 col-md-12 col-lg-12 col-xl-12 m-0 p-0">
+                                        <i class="fas fa-plus plus"></i>
+                                        <label class="about-prod-comment-text2">
+                                            Смартфон хорошо, не лагает, хорошая камера
+                                        </label>
+                                    </div>
+                                    <div class="col-12 col-cm-12 col-md-12 col-lg-12 col-xl-12 m-0 p-0">
+                                        <i class="fas fa-minus minus"></i>
+                                        <label class="about-prod-comment-text2">
+                                            Смартфон хорошо, не лагает, хорошая камера
+                                        </label>
+                                    </div>
+                                </div>*@
+                        </div>
+                        <!-- конец ОТЗЫВЫ -->
+                    </div>
+                    <!-- правая часть -->
+                    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 about-prod-back" id="desc_right">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 about-tech-right h-100">
+                            <div class="row col-12 ml-0 mr-0 p-2">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-4">
+                                    <img src="@Url.Content(ViewBag.main_photo.photo)" class="w-100">
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 pr-4 pt-4 pb-4 pl-0">
+                                    <label class="about-tech-right-text">@ViewBag.product.name</label>
+                                </div>
+                            </div>
+                            <div class="row col-12 ml-0 mr-0 p-2">
+                                <label class="about-tech-price pl-4 pr-4 pb-4 pt-0">@ViewBag.product.price руб</label>
+                            </div>
+                            @if (ViewBag.product.count == 0)
+                            {
+                                <div class="row col-12 ml-4 mr-0 p-2">
+                                    <span class="price d-block" style="color:#bbb">Нет в наличии</span>
+                                </div>
+                                <div class="row col-12 ml-0 mr-0 p-2">
+                                    <button class="about-text-save w-100 ml-4 mr-4 mb-4 mt-0 sale_btn" disabled>Купить</button>
+                                </div>
+
+                            }
+                            else
+                            {
+                                <div class="row col-12 ml-0 mr-0 p-2">
+                                    <button class="about-text-save w-100 ml-4 mr-4 mb-4 mt-0 sale_btn">Купить</button>
+                                </div>
+                            }
+
+                            @*<div class="row col-12 ml-0 mr-0 p-2">
+                                    <label class="about-text-like-list mr-4 ml-4 mb-4 mt-0 w-100 p-2"><i class="fas fa-heart"></i>  Добавить в список желаний</label>
+                                </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+<!-- Modal -->
+@*<div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title modal-class" id="exampleModalLabel">Оставить отзыв</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label class="modal-class" for="exampleInputName1">Достоинства</label>
+                    <input type="text" class="form-control" id="exampleInputName1" aria-describedby="nameHelp" style="font-size: 1.5rem;">
+                    <label class="modal-class" for="exampleInputName1">Недостатки</label>
+                    <input type="text" class="form-control" id="exampleInputName1" aria-describedby="nameHelp" style="font-size: 1.5rem;">
+                    <label class="modal-class" for="exampleInputName1">Комментарий</label>
+                    <textarea type="text" class="form-control" id="exampleInputName1" aria-describedby="nameHelp" style="font-size: 1.5rem;"> </textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class=" modal-save-btn">Сохранить</button>
+                    <button type="button" class="modal-cancel-btn" data-dismiss="modal">Отмена</button>
+
+                </div>
+            </div>
+        </div>
+    </div>*@

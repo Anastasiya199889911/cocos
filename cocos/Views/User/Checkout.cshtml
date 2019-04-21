@@ -1,0 +1,135 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<section class="body">
+    <div class="container-fluid p-0" style="height: 100%; width: 100%;">
+        <div class="row justify-content-center m-0" style=" width: 100%;">
+            <div class="col-10 title-order">
+                Оформление заказа
+                <div class="row col-12 ml-0 mr-0 mt-4">
+                    <div class="col-6 order">
+                        <div class="row col-12 m-0 p-0">
+                            <div class="col-6 p-0" style="text-align-last: left;">
+                                <label class="order-text">Состав заказа</label>
+                            </div>
+                            <div class="col-6 p-0" style="text-align-last: right;">
+                                <a class="order-href" href="@Url.Action("Index","User")">Продолжить покупки</a>
+                            </div>
+                        </div>
+                        <hr>
+                        @{int final_sum = 0;}
+                        @foreach (var basket in ViewBag.basket)
+                        {
+                            <div class="row col-12 m-0 p-0">
+                                <div class="col-4" style="text-align-last: left;">
+                                    @foreach (var photo in basket.product.photo)
+                                    {
+                                        if (photo.is_main == true)
+                                        {
+                                            <img src="@Url.Content(photo.photo)" class=w-100>
+                                        }
+                                    }
+
+                                </div>
+                                <div class="col-8" style="text-align-last: left;">
+                                    <div class="row col-12 m-0 p-0">
+                                        <label class="order-text">@basket.product.name</label>
+                                    </div>
+                                    <div class="row col-12 m-0 p-0">
+                                        <label class="order-text-price">Цена: @basket.product.price руб</label>
+                                    </div>
+                                    <div class="row col-12 m-0 p-0">
+                                        <label class="order-text">Количество: @basket.count</label>
+                                    </div>
+                                    <div class="row col-12 m-0 p-0">
+                                        @{ int sum = basket.count * basket.product.price;
+                                            final_sum = final_sum + sum;}
+                                        <label class="order-text-sum2">Сумма: @sum руб</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                        }
+
+                        @*<div class="row col-12 m-0 p-0">
+                                <div class="col-4" style="text-align-last: left;">
+                                    <img src="Фото4.png" class=w-100>
+                                </div>
+                                <div class="col-8" style="text-align-last: left;">
+                                    <div class="row col-12 m-0 p-0">
+                                        <label class="order-text">Apple EarPods 3.5mm original</label>
+                                    </div>
+                                    <div class="row col-12 m-0 p-0">
+                                        <label class="order-text-price">Цена: 2000 руб</label>
+                                    </div>
+                                    <div class="row col-12 m-0 p-0">
+                                        <label class="order-text">Количество: 1</label>
+                                    </div>
+                                    <div class="row col-12 m-0 p-0">
+
+                                        <label class="order-text-sum2">Сумма: 2000 руб</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>*@
+
+                        <div class="row col-12 m-0 p-0">
+                            <label class="order-text-sum1 ml-auto">Сумма</label>
+                        </div>
+                        <div class="row col-12 m-0 p-0">
+
+                            <label class="order-text-sum3 ml-auto">@final_sum руб</label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        @*<form action="@Url.Action("SendOrder","Products")" method="post">*@
+                        <div class="row col-12 m-0 p-0">
+                            <div class="col-12 p-0" style="text-align-last: left;">
+                                <label class="order-text-user">Ваши данные</label>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row col-12 m-0 p-0">
+                            <label class="order-text">ФИО</label>
+                        </div>
+                        <div class="row col-12 m-0 p-0">
+                            <input type="text" name="fio" id="fio" class="order-text-input">
+                        </div>
+                        <div class="row col-12 m-0 p-0">
+                            <label class="order-text">Email</label>
+                        </div>
+                        <div class="row col-12 m-0 p-0">
+                            <input type="email" name="email" id="email" class="order-text-input" value=" ">
+                        </div>
+                        <div class="row col-12 m-0 p-0">
+                            <label class="order-text">Телефон</label>
+                            <label class="order-text ml-auto">071-xxx-xxxx</label>
+                        </div>
+                        <div class="row col-12 m-0 p-0">
+                            <input type="tel" name="phone" id="phone" pattern="071-[0-9]{3}-[0-9]{4}" class="order-text-input">
+                        </div>
+                        <div class="alert alert-warning mt-4 d-none" style="font-size: 1.5rem;" role="alert" id="error">
+                            Это уведомление-предупреждение — check it out!
+                        </div>
+                        <hr>
+
+                        <div class="row col-12 m-0 p-0">
+                            <div class="col-6 p-0" style="float: left;text-align-last: left;">
+                                <label class="order-text-sum1">К оплате</label>
+                            </div>
+                            <div class="col-6 p-0" style="float: right; text-align-last: right;">
+                                <label class="order-text-sum3">@final_sum руб</label>
+                            </div>
+                        </div>
+
+                        <hr>
+                        <div class="row col-12 m-0 p-0">
+                            <button type="submit" class="order_submit" id="order_submit">Заказ подтверждаю</button>
+                        </div>
+                        @*</form>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

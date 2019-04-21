@@ -1,0 +1,123 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<section class="body">
+    <div class="container-fluid p-0" style="height: 100%; width: 100%;">
+        <div class="row justify-content-center m-0" style=" width: 100%;">
+            <div class="col-12 title-page">
+                @ViewBag.title
+            </div>
+            <div class="col-11 btn-add">
+                <form action="@Url.Action("AddProduct","Admin")" method="post">
+                    <input type="hidden" name="product_type_id" id="point_id" value="@ViewBag.titleID" />
+                    <button type="submit" class="plus-btn" style="font-size:1.4rem;" >
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="col-11 table-char">
+                <table>
+                    <tbody id="chTable">
+                        <tr>
+                            <th style="width: 21%">Фото</th>
+                            <th style="width: 36%">Название</th>
+                            <th style="width: 15%">Цена</th>
+                            <th style="width: 10%">Количество</th>
+                            @*<th style="width: 30%">Описание</th>*@
+                            <th style="width: 9%"></th>
+                            <th style="width: 9%"></th>
+                        </tr>
+                        @foreach (var pr in ViewBag.product)
+                        {
+                        <tr class="tableElem">
+                            <td>
+                                @foreach (var p in pr.photo)
+                                {
+                                    <img style="width:45%" src="@Url.Content(p.photo)" alt="Alternate Text" />
+                                }
+                            </td>
+                            <td>@pr.name</td>
+                            <td>@pr.price</td>
+                            <td>@pr.count</td>
+                            @*<td>@pr.description</td>*@
+                            <td>
+                                <form action="@Url.Action("UpdateProduct","Admin")" method="post">
+                                    <input type="hidden" name="id" value="@pr.id" />
+                                    <button type="submit" class="plus-btn" style="font-size:1.4rem;">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </button>
+                                    @*<i class="fas fa-pencil-alt updateProdBtn" type="submit"></i>*@
+                                </form>
+                            </td>
+                            <td>
+                                <input type="hidden" id="deleteid" value="@pr.id" />
+                                <button type="submit" class="trash-btn deleteProdBtn" style="font-size:1.4rem;">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                                @*<i class="fas fa-trash-alt deleteProdBtn"></i>*@
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@*<div class="modal fade" id="addProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title add-title" id="exampleModalLabel">Характеристики</h3>
+                <button type="button" class="close add-title" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body add-title">
+                <div class="row col-12">
+                    <label>Название</label>
+                    <input class="w-100" type="text" name="name" id="name" value="" />
+                    <input type="text" name="name" id="id" value="" />
+                    <input type="text" name="name" id="prod_type" value="@ViewBag.titleID" />
+                </div>
+                <div class="row col-12">
+                    <div class="col-6">
+                        <div class="row col-12">
+                            <label>Цена</label>
+                            <input class="w-100" type="text" name="name" id="price" value="" />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row col-12">
+                            <label>Количество</label>
+                            <input class="w-100" type="text" name="name" id="count" value="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row col-12">
+                    <label>Описание</label>
+                    <textarea id="description" class="w-100"></textarea>
+                </div>
+
+                @foreach (var ch in ViewBag.prodChar)
+                {
+                    <div class="row col-12">
+                        <label class="char_prod_label">@ch.characteristics.name</label>
+                        <input class="w-100 char_prod_text" type="text" name="@ch.characteristics.name" id="@ch.characteristics.name" />
+                    </div>
+                }
+                <div class="row col-12">
+                    <label class="w-100">Фото</label>
+                    <input type="file" multiple id="photo" name="name" value="" />
+                    <input type="text" name="name" id="photo_file" value="" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="saveProduct" class="save-btn">Сохранить</button>
+                <button type="button" id="cancelProduct" class="cancel-btn" data-dismiss="modal">Отмена</button>
+            </div>
+        </div>
+    </div>
+</div>*@

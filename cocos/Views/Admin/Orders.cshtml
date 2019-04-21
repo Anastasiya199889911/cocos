@@ -1,0 +1,138 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<section class="body">
+    <div class="container-fluid p-0" style="height: 100%; width: 100%;">
+        <div class="row justify-content-center m-0" style=" width: 100%;">
+            <div class="col-12 title-page">
+                Заказы
+            </div>
+
+            <div class="col-10">
+                <hr>
+                <div class="accordion" id="accordionExample">
+                    @foreach (var order in ViewBag.orders)
+                    {
+                    <div class="card">
+                        @{ var c1 = "#collapse" + order.id;
+                            var c2 = "collapse" + order.id;
+                            var h = "heading" + order.id;
+                            var final_sum = 0;}
+                        @foreach (var o in order.compositionOrder)
+                        { final_sum += o.count * o.price; }
+                        <div class="card-header p-0" id="@h">
+                            <button class="cart_head w-100 h-100 p-2" type="button" data-toggle="collapse" data-target="@c1" aria-expanded="true" aria-controls="@c2">
+                                <div class="row col-12 m-0 h-100">
+                                    <div class="col-3 p-0 m-0 h-100"><label>@order.fio</label></div>
+                                    <div class="col-5 p-0 m-0 h-100"><label>@order.email</label></div>
+                                    <div class="col-2 p-0 m-0 h-100"><label>@order.phone</label></div>
+
+                                    <div class="col-1 p-0 m-0 h-100"><label class="order-text-sum2">@final_sum руб</label></div>
+                                    <div class="col-1 p-0 m-0 h-100" style="text-align:right"><input type="hidden" value="@order.id" /><i class="fas fa-trash-alt order_trash" style="font-size: 1.8rem"> </i></div>
+                                </div>
+
+                            </button>
+                        </div>
+
+                        <div id="@c2" class="collapse" aria-labelledby="@h" data-parent="#accordionExample">
+                            <div class="card-body">
+                                @foreach (var o in order.compositionOrder)
+                                {
+                                    <div class="row col-12 m-0 card_body">
+                                        <div class="col-6 p-0 m-0">
+                                            @o.name
+                                        </div>
+                                        <div class="col-2 p-0 m-0">
+                                            Количество: @o.count
+                                        </div>
+                                        <div class="col-2 p-0 m-0">
+                                            Цена: @o.price руб
+                                        </div>
+                                        <div class="col-2 p-0 m-0">
+                                            @{ var sum = o.count * o.price;}
+                                            Сумма: @sum руб
+                                        </div>
+                                    </div>
+                                    <hr>
+                                }
+
+                                @*<div class="row col-12 m-0">
+                    <div class="col-6 p-0 m-0">
+                        Apple EarPods 3.5mm original
+                    </div>
+                    <div class="col-2 p-0 m-0">
+                        Количество: 1
+                    </div>
+                    <div class="col-2 p-0 m-0">
+                        Цена: 2000 руб
+                    </div>
+                    <div class="col-2 p-0 m-0">
+                        Сумма: 2000 руб
+                    </div>
+                </div>
+                <hr>*@
+                            </div>
+                        </div>
+                    </div>
+                    }
+
+
+                    @*<div class="card">
+                        <div class="card-header " id="heading2">
+                            <button class="cart_head w-100 h-100" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                                <div class="row col-12 m-0 h-100">
+                                    <div class="col-3 p-0 m-0 h-100"><label>ФИО заказчика</label></div>
+                                    <div class="col-3 p-0 m-0 h-100"><label>email</label></div>
+                                    <div class="col-2 p-0 m-0 h-100"><label>phone</label></div>
+                                    <div class="col-3 p-0 m-0 h-100"><label>сумма общая</label></div>
+                                    <div class="col-1 p-0 m-0 h-100"><i class="fas fa-trash-alt" style="font-size: 1.8rem"> </i></div>
+                                </div>
+
+                            </button>
+                        </div>
+
+                        <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="row col-12 m-0 card_body">
+                                    <div class="col-6 p-0 m-0">
+                                        Apple EarPods 3.5mm original
+                                    </div>
+                                    <div class="col-2 p-0 m-0">
+                                        Количество: 1
+                                    </div>
+                                    <div class="col-2 p-0 m-0">
+                                        Цена: 2000 руб
+                                    </div>
+                                    <div class="col-2 p-0 m-0">
+                                        Сумма: 2000 руб
+                                    </div>
+                                </div>
+                                <hr>
+
+                                <div class="row col-12 m-0">
+                                    <div class="col-6 p-0 m-0">
+                                        Apple EarPods 3.5mm original
+                                    </div>
+                                    <div class="col-2 p-0 m-0">
+                                        Количество: 1
+                                    </div>
+                                    <div class="col-2 p-0 m-0">
+                                        Цена: 2000 руб
+                                    </div>
+                                    <div class="col-2 p-0 m-0">
+                                        Сумма: 2000 руб
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>*@
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>

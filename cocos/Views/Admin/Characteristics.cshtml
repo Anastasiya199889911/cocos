@@ -1,0 +1,233 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<section class="body">
+    <div class="container-fluid p-0" style="height: 100%; width: 100%;">
+        <div class="row justify-content-center m-0" style=" width: 100%;">
+            <div class="col-12 title-page">
+                ХАРАКТЕРИСТИКИ
+            </div>
+            <div class="col-11 btn-add">
+                <button type="button" class="plus-btn" data-toggle="modal" data-target="#addCharacteristic" style="font-size:1.4rem;">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+            @*<div class="col-11 table-char">
+                    <table id="chTable">
+                        <tr>
+                            <th style="width: 40%">Название</th>
+                            <th style="width: 20%">Типы</th>
+                            <th style="width: 10%">Акустика</th>
+                            <th style="width: 10%">Кабели</th>
+                            <th style="width: 10%">Накопители</th>
+                            <th style="width: 10%">Рюкзаки</th>
+                            <th style="width: 12%">Смарт-часы</th>
+                            <th style="width: 12%">Умный дом</th>
+                            <th style="width: 9%"><i class="fas fa-pencil-alt"></i></th>
+                        </tr>
+                        @foreach (var ch in ViewBag.characteristics)
+                        {
+                        <tr>
+                            <td>@ch.name</td>
+                            <td>
+                                @foreach (var c in ch.characteristicByTypes)
+                                {
+                                    <label>@c.productTypes.name</label>
+                                }
+                            </td>
+                            @*<td><input type="checkbox" name="" disabled=""></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        }
+                    </table>
+                </div>*@
+            <div class="col-11 table-char">
+                <table>
+                    <tbody id="chTable" style="text-align-last:left">
+                        <tr>
+                            <th style="width: 21%">Название</th>
+                            <th style="width: 10%">Наушники</th>
+                            <th style="width: 10%">Акустика</th>
+                            <th style="width: 10%">Кабели</th>
+                            <th style="width: 10%">Накопители</th>
+                            <th style="width: 10%">Рюкзаки</th>
+                            <th style="width: 12%">Смарт-часы</th>
+                            <th style="width: 12%">Умный дом</th>
+                            <th style="width: 9%"></th>
+                            <th style="width: 9%"></th>
+                        </tr>
+                        @foreach (var ch in ViewBag.characteristics)
+                        {
+                            <tr class="tableElem">
+                                <td>@ch.name</td>
+                                @{ bool fl1 = false;
+                                    bool fl2 = false;
+                                    bool fl3 = false;
+                                    bool fl4 = false;
+                                    bool fl5 = false;
+                                    bool fl6 = false;
+                                    bool fl7 = false;
+                                    foreach (var c in ch.characteristicByTypes)
+                                    {
+                                        if (c.productTypes.id == 1)
+                                        { fl1 = true; }
+                                        if (c.productTypes.id == 2)
+                                        { fl2 = true; }
+                                        if (c.productTypes.id == 3)
+                                        { fl3 = true; }
+                                        if (c.productTypes.id == 4)
+                                        { fl4 = true; }
+                                        if (c.productTypes.id == 5)
+                                        { fl5 = true; }
+                                        if (c.productTypes.id == 6)
+                                        { fl6 = true; }
+                                        if (c.productTypes.id == 7)
+                                        { fl7 = true; }
+
+                                    }
+                                }
+                                <td>
+                                    @if (fl1 == true)
+                                    {<input type="checkbox" checked name="" disabled=""> }
+                                    else
+                                    {<input type="checkbox" name="" disabled="">}
+                                </td>
+                                <td>
+                                    @if (fl2 == true)
+                                    {<input type="checkbox" checked name="" disabled=""> }
+                                    else
+                                    {<input type="checkbox" name="" disabled="">}
+                                </td>
+                                <td>
+                                    @if (fl3 == true)
+                                    {<input type="checkbox" checked name="" disabled=""> }
+                                    else
+                                    {<input type="checkbox" name="" disabled="">}
+                                </td>
+                                <td>
+                                    @if (fl4 == true)
+                                    {<input type="checkbox" checked name="" disabled=""> }
+                                    else
+                                    {<input type="checkbox" name="" disabled="">}
+                                </td>
+                                <td>
+                                    @if (fl5 == true)
+                                    {<input type="checkbox" checked name="" disabled=""> }
+                                    else
+                                    {<input type="checkbox" name="" disabled="">}
+                                </td>
+                                <td>
+                                    @if (fl6 == true)
+                                    {<input type="checkbox" checked name="" disabled=""> }
+                                    else
+                                    {<input type="checkbox" name="" disabled="">}
+                                </td>
+                                <td>
+                                    @if (fl7 == true)
+                                    {<input type="checkbox" checked name="" disabled=""> }
+                                    else
+                                    {<input type="checkbox" name="" disabled="">}
+                                </td>
+                                <td>
+                                    <input type="hidden" value="@fl1,@fl2,@fl3,@fl4,@fl5,@fl6,@fl7" />
+                                    <input type="hidden" value="@ch.id" />
+                                    <input type="hidden" value="@ch.name" />
+                                    <i class="fas fa-pencil-alt updateCharBtn"></i>
+                                </td>
+                                <td>
+                                    <input type="hidden" id="deleteid" value="@ch.id" />
+                                    <i class="fas fa-trash-alt deleteCharBtn"></i>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="modal fade" id="addCharacteristic" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title add-title" id="exampleModalLabel">Характеристики</h3>
+                <button type="button" class="close add-title" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body add-title">
+                <div class="row col-12">
+                    <label>Название характеристики</label>
+                    <input class="w-100" type="text" name="name" id="name" value="" />
+                    <input type="hidden" name="name" id="id" value="" />
+                </div>
+
+                <div class="row col-12">
+                    <div class="col-6">
+                        <label>Наушники</label>
+                    </div>
+                    <div class="col-6">
+                        <input type="checkbox" name="headphones" id="headphones" value="1" />
+                    </div>
+                </div>
+                <div class="row col-12">
+                    <div class="col-6">
+                        <label>Акустика</label>
+                    </div>
+                    <div class="col-6">
+                        <input type="checkbox" name="acoustics" id="acoustics" value="1" />
+                    </div>
+                </div>
+                <div class="row col-12">
+                    <div class="col-6">
+                        <label>Кабели</label>
+                    </div>
+                    <div class="col-6">
+                        <input type="checkbox" name="cables" id="cables" value="1" />
+                    </div>
+                </div>
+                <div class="row col-12">
+                    <div class="col-6">
+                        <label>Накопители</label>
+                    </div>
+                    <div class="col-6">
+                        <input type="checkbox" name="drives" id="drives" value="1" />
+                    </div>
+                </div>
+                <div class="row col-12">
+                    <div class="col-6">
+                        <label>Рюкзаки и сумки</label>
+                    </div>
+                    <div class="col-6">
+                        <input type="checkbox" name="backpacksAndBags" id="backpacksAndBags" value="1" />
+                    </div>
+                </div>
+                <div class="row col-12">
+                    <div class="col-6">
+                        <label>Смарт-часы</label>
+                    </div>
+                    <div class="col-6">
+                        <input type="checkbox" name="smartWatch" id="smartWatch" value="1" />
+                    </div>
+                </div>
+                <div class="row col-12">
+                    <div class="col-6">
+                        <label>Умный дом</label>
+                    </div>
+                    <div class="col-6">
+                        <input type="checkbox" name="smartHouse" id="smartHouse" value="1" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="saveCharact" class="save-btn">Сохранить</button>
+                <button type="button" class="cancel-btn" id="cancelChar" data-dismiss="modal">Отмена</button>
+            </div>
+        </div>
+    </div>
+</div>

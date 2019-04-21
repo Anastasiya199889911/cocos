@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cocos</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet">
+
+</head>
+<body>
+    <input type="hidden" id="is_auth" value="0" />
+    <div class="container-fluid head p-0">
+        <div class="row p-0 m-auto align-items-center col-xl-11" style="height: 100%; width: 100%;">
+            <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 logo" style="vertical-align: middle;">
+                <img src="~/Content/logo.png" width="100%" height="100%" onclick="location.href='@Url.Action("Index","Products")'">
+            </div>
+            <div class="col-6 col-sm-6 col-md-5 col-lg-5 col-xl-6 p-2">
+                <form action="@Url.Action("Find","Products")" method="get" style="display:inline-block" class="w-100">
+                    <div class="row p-0 m-0" style="border: none; border-radius: 5px">
+                        <div class="col-10 col-sm-10 col-md-11 col-lg-11 col-xl-11 w-100 p-0 m-0">
+                            <input type="text" name="search" class="search_input w-100">
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1 w-100 p-0 m-0" style="display: inline-block; background-color: #fff;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
+                            <button type="submit" style="text-align:center; margin-top:5px; border:none; background:inherit">
+                                <i class="fas fa-search search_btn w-100"></i>
+                            </button>
+                            
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        @*</div>*@
+        <div class="d-none d-sm-none d-md-none d-lg-block d-xl-block col-md-1 col-lg-auto col-xl-auto p-2 shop">
+            <i class="fas fa-shopping-basket"></i>
+            <label data-toggle="modal" data-target="#basketModal">Корзина <span class="badge badge-light"></span></label>
+        </div>
+        <div class="d-none d-sm-none d-md-none d-lg-block d-xl-block col-md-1 col-lg-1 col-xl-1 p-2 shop" data-toggle="modal" data-target="#exampleModal">
+            <i class="far fa-user"></i>
+            <label>Войти</label>
+        </div>
+        <div class="d-none d-sm-none d-md-none d-lg-block d-xl-block col-md-1 col-lg-1 col-xl-1 p-2 shop">
+            <div style="float: right;">
+                <i class="fas fa-map-marker-alt"></i>
+                <label>Донецк</label>
+            </div>
+        </div>
+    </div>
+    <div class="row p-0 m-auto justify-content-center col-xl-12" style="background: #fff;">
+        <div class="col-md-11 col-lg-11 col-xl-10" style="text-align: center;">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <button id="btn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1"
+                        aria-controls="navbar1" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbar1">
+                    <ul class="navbar-nav w-100" style="justify-content: space-between;">
+                        <li id="LiNews" class="nav-item">
+                            <div class="nav-link">
+                                <a class="head-label" style="" href="@Url.Action("Headphones","Products")">Наушники</a>
+                            </div>
+                        </li>
+                        <li id="LiNews" class="nav-item">
+                            <div class="nav-link">
+                                <a class="head-label" style="" href="@Url.Action("Acoustics","Products")">Акустика</a>
+                            </div>
+                        </li>
+                        <li id="LiNews" class="nav-item">
+                            <div class="nav-link">
+                                <a class="head-label" style="" href="@Url.Action("Cables","Products")">Кабели</a>
+                            </div>
+                        </li>
+                        <li id="LiNews" class="nav-item">
+                            <div class="nav-link">
+                                <a class="head-label" style="" href="@Url.Action("Drives","Products")">Накопители</a>
+                            </div>
+                        </li>
+                        <li id="LiNews" class="nav-item">
+                            <div class="nav-link">
+                                <a class="head-label" style="" href="@Url.Action("BackpacksAndBags","Products")">Рюкзаки и сумки</a>
+                            </div>
+                        </li>
+                        <li id="LiNews" class="nav-item">
+                            <div class="nav-link">
+                                <a class="head-label" style="" href="@Url.Action("SmartWatch","Products")">Смарт-часы</a>
+                            </div>
+                        </li>
+                        <li id="LiNews" class="nav-item">
+                            <div class="nav-link">
+                                <a class="head-label" style="" href="@Url.Action("SmartHouse","Products")">Умный дом</a>
+                            </div>
+                        </li>
+                        <li id="LiNews" class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none">
+                            <a class="nav-link head-label" style="color: rgb(253,80,46);" href="#"><i class="fas fa-shopping-basket"></i> Корзина <span class="badge badge-light"></span></a>
+                        </li>
+                        <li id="LiNews" class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none">
+                            <a class="nav-link head-label" style="color: rgb(253,80,46);" href="#"><i class="far fa-user"></i> Войти</a>
+                        </li>
+                        <li id="LiNews" class="nav-item d-block d-sm-block d-md-block d-lg-none d-xl-none">
+                            <a class="nav-link head-label" style="color: rgb(253,80,46);" href="#"><i class="fas fa-map-marker-alt"></i> Донецк</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <hr class="p-0 m-0" style="border-top: 1px solid #bbb">
+    </div>
+    @RenderBody()
+    @*<hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
+            </footer>
+        </div>*@
+
+    <section class="footer">
+        <div class="container-fluid p-0 mt-5" style="height: 100%; width: 100%;">
+            <hr class="p-0 m-0" style="border-top: 1px solid #bbb">
+            <div class="row justify-content-center ml-0 mr-0 mt-3 align-items-center" style=" width: 100%;">
+                <div class="col-10" style="padding-left: 3rem">
+                    <span class="footer_span"><i class="fas fa-phone"></i></span>
+                    <label class="footer_label">Консультация и заказ по телефонам</label>
+                </div>
+                <div class="col-2" style="text-align-last: right;padding-right: 3rem;">
+                    <a href="https://www.instagram.com/cocos_dn/?utm_source=ig_profile_share&igshid=l6vam37vdkb5" style="color:#000" target="_blank"><i class="fab fa-instagram p-3" style="font-size: 2.5rem"></i></a>
+                    
+                    <a href="https://vk.com/cocos_dn" style="color:#000" target="_blank"><i class="fab fa-vk p-3" style="font-size: 2.5rem"></i></a>
+                </div>
+            </div>
+            <div class="row justify-content-center ml-0 mr-0 mt-3 align-items-center" style=" width: 100%;">
+                <div class="col-12" style="padding-left: 3rem">
+                    <label class="footer_label">(380)71-439-12-93</label>
+                    <label class="footer_label ml-5">(380)71-331-48-23</label>
+                    <label class="footer_label ml-5">(380)71-439-04-87</label>
+                </div>
+            </div>
+            <hr class="p-0 m-0" style="border-top: 1px solid #bbb">
+            <div class="row justify-content-center ml-0 mr-0 align-items-center" style=" width: 100%; background-color: rgb(253,80,46)">
+                <div class="col-12 pt-2 pb-2" style="padding-left: 3rem">
+                    <label class="footer_label2 mb-0">&copy;Интернет магазин Cocos - гаджеты и аксесуары 2019</label>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title modal-class" id="exampleModalLabel">Вход/Регистрация</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label class="modal-class" for="login">Логин</label>
+                    <input type="text" class="form-control" id="login" aria-describedby="nameHelp" style="font-size: 1.5rem;">
+                    <label class="modal-class" for="pass">Пароль</label>
+                    <input type="text" class="form-control" id="pass" aria-describedby="nameHelp" style="font-size: 1.5rem;">
+                    <div class="alert alert-warning mt-4 d-none" style="font-size: 1.5rem;" role="alert" id="error">
+                        Это уведомление-предупреждение — check it out!
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class=" modal-save-btn" id="authorization_user">Вход</button>
+                    <button type="button" class="modal-cancel-btn" id="registration_user">Регистрация</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade " id="basketModal" tabindex="-1" role="dialog" aria-labelledby="basketModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title modal-class" id="basketModalLabel">Корзина</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="basket_body">
+
+                </div>
+                <div class="modal-footer">
+                    <label id="final_count" style="font-size:1.8rem; color: rgb(253,80,46); margin-left:4rem;margin-right:auto;"></label>
+                    <button type="button" class=" modal-save-btn" id="checkout_page" onclick="location.href='@Url.Action("Checkout","Products")'">Оформить заказ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/main.js")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

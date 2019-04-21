@@ -1,0 +1,129 @@
+﻿
+<section class="body">
+    <div class="container-fluid p-0" style="height: 100%; width: 100%;">
+
+        <div class="row justify-content-center m-0" style=" width: 100%;">
+            <div class="col-12 title-page" style="text-align-last: left;">
+                <!-- Новинки -->
+            </div>
+
+            @for (int i = 0; i < ViewBag.Product.Count; i++)
+            {
+
+
+                <div class="col-md-3 mt-3">
+                    <div class="item w-100">
+                        <div class="product">
+                            <div class="thumb-img">
+                                <img src="@Url.Content(ViewBag.photo[i])">
+                                <div class="actions">
+                                    <form action="@Url.Action("Detail","Products")" method="get">
+                                        <input type="hidden" name="id" value="@ViewBag.product[i].id" />
+                                        <button class="share-button" type="submit"><i class="fa fa-search"></i></button>
+                                        @*<a ></a>*@
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="product-about">
+                                <h3 class="product-title">
+                                    <a href="" class="product-title-a" style="text-decoration: none;">@ViewBag.product[i].name</a>
+                                </h3>
+
+                                <span class="price"><i class="far fa-money-bill-alt"></i> @ViewBag.product[i].price</span>
+                                @if (ViewBag.product[i].count == 0)
+                                {
+                                    <span class="price d-block" style="color:#bbb">Нет в наличии</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+            @*<div class="col-md-3 mt-3">
+            <div class="item w-100">
+                <div class="product">
+                    <div class="thumb-img">
+                        <img src="img.jpg">
+                        <div class="actions">
+                            <a href="" class="share-button"><i class="fa fa-search"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-about">
+                        <h3 class="product-title">
+                            <a href="" class="product-title-a" style="text-decoration: none;">Название</a>
+                        </h3>
+                        <span class="price"><i class="far fa-money-bill-alt"></i> 2000</span>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+            @*<div class="col-md-3 mt-3">
+            <div class="item w-100">
+                <div class="product">
+                    <div class="thumb-img">
+                        <img src="img.jpg">
+                        <div class="actions">
+                            <a href="" class="share-button"><i class="fa fa-search"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-about">
+                        <h3 class="product-title">
+                            <a href="" class="product-title-a" style="text-decoration: none;">Название</a>
+                        </h3>
+                        <span class="price"><i class="far fa-money-bill-alt"></i> 2000</span>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+            @*<div class="col-md-3 mt-3">
+            <div class="item w-100">
+                <div class="product">
+                    <div class="thumb-img">
+                        <img src="img.jpg">
+                        <div class="actions">
+                            <a href="" class="share-button"><i class="fa fa-search"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-about">
+                        <h3 class="product-title">
+                            <a href="" class="product-title-a" style="text-decoration: none;">Название</a>
+                        </h3>
+                        <span class="price"><i class="far fa-money-bill-alt"></i> 2000</span>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+        </div>
+
+        <div class="row justify-content-center ml-0 mr-0 mt-5" style=" width: 100%;">
+            <div class="col-md-4 mt-3">
+                <div class="row col-12 m-0 justify-content-center">
+                    <i class="fas fa-truck price" style="font-size: 3rem"></i>
+                </div>
+                <div class="row col-12 m-0 justify-content-center">
+                    <span class="price">бесплатная доставка</span>
+                </div>
+            </div>
+            <div class="col-md-4 mt-3">
+                <div class="row col-12 m-0 justify-content-center">
+                    <i class="fas fa-phone price" style="font-size: 3rem"></i>
+                </div>
+                <div class="row col-12 m-0 justify-content-center">
+                    <span class="price">консультация по телефону</span>
+                </div>
+            </div>
+            <div class="col-md-4 mt-3">
+                <div class="row col-12 m-0 justify-content-center">
+                    <i class="fas fa-award price" style="font-size: 3rem"></i>
+                </div>
+                <div class="row col-12 m-0 justify-content-center">
+                    <span class="price">гарантийный возврат от обмен</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

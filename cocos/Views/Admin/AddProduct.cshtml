@@ -1,0 +1,85 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<section class="body">
+    <div class="container-fluid p-0" style="height: 100%; width: 100%;">
+        <div class="row justify-content-center m-0" style=" width: 100%;">
+
+            <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
+                <form action="@Url.Action("SaveProduct","Admin")" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="product_type_id" value="@ViewBag.titleID" />
+                    <input type="text" name="name" class="about-product-title-add w-100" placeholder="Название" value="" />
+
+
+                    <!-- страница ОПИСАНИЕ -->
+                    <div class="row col-12 ml-0 mr-0 p-0">
+
+
+                        <div class="row col-12 ml-0 mr-0 about-product-body">
+                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-0 ml-0 mr-0">
+                                <div class="row col-12 p-0 m-0">
+                                    <div class="col-10 p-0 ml-auto">
+                                        <input style="font-size:1.5rem" type="file" name="main_files" value="" />
+                                        <input style="font-size:1.5rem" type="file" name="files" multiple value="" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 p-0 ml-0 mr-0">
+                                <div class="row col-12 p-0 m-0">
+                                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                                        <div class="row col-12 about-prod-price">
+                                            <input type="text" name="price" class="about-product-price-add w-100" placeholder="цена" value="" />
+                                        </div>
+                                        <div class="row col-12 about-prod-price">
+                                            <input type="text" name="count" class="about-product-price-add w-100 mt-4" placeholder="количество" value="" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+                                        <div class="row col-12 about-prod-desc">
+                                            <label class="about-product-desc">Дополнительно:</label>
+                                        </div>
+                                        <div class="row col-12">
+                                            <input type="text" name="guarant" class="about-product-price-add w-100 mt-4" placeholder="Гарантия" value="" />
+                                            <input type="text" name="country" class="about-product-price-add w-100 mt-4" placeholder="Страна-производитель" value="" />
+                                            
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row col-12 ml-0 mr-0 about-tech-title pl-5 pr-5">
+                            <textarea class="about-product-desc w-100" name="description" placeholder="Описание"></textarea>
+                        </div>
+                        <div class="row col-12 ml-0 mr-0 about-tech-title pl-5 pr-5">
+                            <label class="about-tech-title-text1">Технические характеристики </label>
+                        </div>
+                        <div class="row col-12 ml-0 mr-0 about-tech-text pl-5 pr-5">
+                            @foreach (var ch in ViewBag.characteristic)
+                            {
+                                <div class="row col-12 ml-0 mr-0 p-0">
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-0">
+                                        <label class="about-tech-text-text1">@ch</label>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-0">
+                                        <input type="hidden" class="about-tech-text-text2-add w-100" name="characteristic_name" value="@ch" />
+                                        <input type="text" class="about-tech-text-text2-add w-100" name="characteristic" value="" />
+                                    </div>
+                                </div>
+                            }
+
+
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="plus-btn mt-4 mb-4" style="font-size:2rem;">
+                        Сохранить
+                    </button>
+                </form>
+            </div>
+        </div>
+</section>
